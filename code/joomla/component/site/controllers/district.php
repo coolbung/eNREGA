@@ -1,0 +1,1 @@
+<? class ComEnregaControllerDistrict extends ComDefaultControllerResource {}
