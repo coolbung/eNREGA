@@ -1,11 +1,11 @@
 <?php
 defined('KOOWA') or die ('Phut!');
+echo @template('site::com.enrega.view.common.default'); 
 ?>
 
 <form action="<?= @route() ?>" method="get" class="-koowa-grid">
-<?php echo @template('site::com.enrega.view.common.default'); ?>
-
 <table width="100%">
+<thead>
     <tr>
 		<td colspan="5"><?=@helper('grid.search');?></td>
 		<td colspan="3" align="right">
@@ -14,7 +14,6 @@ defined('KOOWA') or die ('Phut!');
 			<a href="index.php?option=com_enrega&view=districts&format=print" class="button">Print</a>
 		</td>
     </tr>
-<thead>
     <tr>
         <th valign="top">
             <?= @helper('grid.sort', array('column' => 'DistrictName_En', 'title'=> 'Name')); ?>
@@ -23,22 +22,22 @@ defined('KOOWA') or die ('Phut!');
             <?= @helper('grid.sort', array('column' => 'NoOfWorks', 'title' => 'Works')); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'LabourExpenditures', 'title' => 'Labour Exp. ₹')); ?>  
+            <?= @helper('grid.sort', array('column' => 'LabourExpenditures', 'title' => 'Labour Expenditure')); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'labourpercent', 'title' => 'Labour %')); ?>  
+            <?= @text('Labour %'); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'MaterialExpenditures', 'title' => 'Material Exp. ₹')); ?>  
+            <?= @helper('grid.sort', array('column' => 'MaterialExpenditures', 'title' => 'Material Expenditure')); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'materialpercent', 'title' => 'Material %')); ?>  
+            <?= @text('Material %'); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'totalexpenditure', 'title' => 'Total Exp. ₹')); ?>  
+            <?= @text('Total Expenditure'); ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('grid.sort', array('column' => 'averageperwork', 'title' => 'Avg per work ₹')); ?>  
+            <?= @text('Avg per work'); ?>  
         </th>
     </tr>
 </thead>
@@ -56,44 +55,48 @@ defined('KOOWA') or die ('Phut!');
 $total_works = $total_labour = $total_material = $total = 0;
 
 foreach ($districts as $district) : 
+/*
+$district->total = $district->LabourExpenditures + $district->MaterialExpenditures;
+$material_percent = round((100 * $district->MaterialExpenditures/$district->total), 2);
+$labour_percent = 100 - $material_percent;
 
 $total_works += $district->NoOfWorks;
 $total_labour += $district->LabourExpenditures;
 $total_material += $district->MaterialExpenditures;
-$total += $district->totalexpenditure;
-
+$total += $district->total;
+*/
 ?>
     <tr>
         <td align="left">
                 <a href="<?= @route('view=blocks&id='.$district->districtid); ?>">
-                    <?= @helper('format.name', array('district' => $district)) ?>
+                    <?=$district->DistrictName_En?>
                 </a>
         </td>
         <td align="right">
 			<?=$district->NoOfWorks?>
         </td>
         <td align="right">
-			<?= @helper('format.currency', array('number' => $district->LabourExpenditures)) ?>
+			<?= @helper('currency.format', array('number' => $district->LabourExpenditures)) ?>
         </td>
         <td align="right">
-			<?= @helper('format.percent', array('number' => $district->labourpercent)) ?>
+			<?= $labour_percent ?>
         </td>
         <td align="right">
-			<?= @helper('format.currency', array('number' => $district->MaterialExpenditures)) ?>
+			<?= @helper('currency.format', array('number' => $district->MaterialExpenditures)) ?>
         </td>
         <td align="right">
-			<?= @helper('format.percent', array('number' => $district->materialpercent)) ?>
+			<?= $material_percent ?>
         </td>
         <td align="right">
-			<?= @helper('format.currency', array('number' => $district->totalexpenditure)) ?>
+			<?= @helper('currency.format', array('number' => $district->total)) ?>
         </td>
         <td align="right">
-			<?= @helper('format.currency', array('number' => $district->averageperwork)) ?>
+			<?= @helper('currency.format', array('number' => $district->total/$district->NoOfWorks)) ?>
         </td>
     </tr>
 <? endforeach; ?>
 
-<tfoot>
+<thead>
     <tr>
         <th valign="top">
         </th>
@@ -101,22 +104,22 @@ $total += $district->totalexpenditure;
             <?= $total_works; ?>  
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('format.currency', array('number' => $total_labour)); ?>  
+            <?= @helper('currency.format', array('number' => $total_labour)); ?>  
         </th>
         <th valign="top" style="text-align:right">
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('format.currency', array('number' => $total_material)); ?>  
+            <?= @helper('currency.format', array('number' => $total_material)); ?>  
         </th>
         <th valign="top" style="text-align:right">
         </th>
         <th valign="top" style="text-align:right">
-            <?= @helper('format.currency', array('number' => $total)); ?>  
+            <?= @helper('currency.format', array('number' => $total)); ?>  
         </th>
         <th valign="top" style="text-align:right">
         </th>
     </tr>
-</tfoot>
+</thead>
 
 <? if (!count($districts)) : ?>
     <tr>
