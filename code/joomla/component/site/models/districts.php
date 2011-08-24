@@ -1,10 +1,9 @@
 <?php
 
-class ComEnregaModelDistricts extends KModelTable {
+class ComEnregaModelDistricts extends ComDefaultModelDefault {
 
 	public function __construct(KConfig $config)
 	{
-		$this->_state->limit = 10;
 		parent::__construct($config);
 	}
      

@@ -1,5 +1,5 @@
 <?php
-setlocale(LC_MONETARY, 'en_US');
+setlocale(LC_MONETARY, 'en_IN');
 
 class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
 {
@@ -12,8 +12,15 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
      */
     public function currency($config = array())
     {
+		$number = round($config['number']);
+		$op = '';
 		$op = '₹ ';
-		$op .= number_format($config['number']);
+		$op .= money_format('%!i', $number);
+		
+		// Cheap, since it does not seem to work for removing decimals from money_format()
+		$pcs = explode('.', $op);
+		array_pop($pcs);
+		$op = implode('.', $pcs);
 		
 		return $op;
     }
