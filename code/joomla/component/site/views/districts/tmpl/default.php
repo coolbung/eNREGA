@@ -6,16 +6,9 @@ defined('KOOWA') or die ('Phut!');
 <?php echo @template('site::com.enrega.view.common.default'); ?>
 
 <table width="100%">
-    <tr>
-		<td colspan="5"><?=@helper('grid.search');?></td>
-		<td colspan="3" align="right">
-			<a href="index.php?option=com_enrega&view=districts&format=csv" class="button">Export</a>
-
-			<a href="index.php?option=com_enrega&view=districts&format=print" class="button">Print</a>
-		</td>
-    </tr>
 <thead>
     <tr>
+        <th valign="top"><?= @text('Sr. #'); ?></th>
         <th valign="top">
             <?= @helper('grid.sort', array('column' => 'DistrictName_En', 'title'=> 'Name')); ?>
         </th>
@@ -45,7 +38,7 @@ defined('KOOWA') or die ('Phut!');
 
 <tfoot>
        <tr>
-            <td colspan="5">
+            <td colspan="9">
                  <?= @helper('paginator.pagination', array('total' => $total)) ?>
             </td>
         </tr>
@@ -54,16 +47,19 @@ defined('KOOWA') or die ('Phut!');
 <tbody>
 <? 
 $total_works = $total_labour = $total_material = $total = 0;
+$i = 0; 
+
 
 foreach ($districts as $district) : 
-
+$i++;
 $total_works += $district->NoOfWorks;
 $total_labour += $district->LabourExpenditures;
 $total_material += $district->MaterialExpenditures;
 $total += $district->totalexpenditure;
 
 ?>
-    <tr>
+    <tr class="row<?php echo $i % 2; ?>">
+		<td><?php echo $i; ?></td>
         <td align="left">
                 <a href="<?= @route('view=blocks&id='.$district->districtid); ?>">
                     <?= @helper('format.name', array('district' => $district)) ?>
@@ -95,8 +91,8 @@ $total += $district->totalexpenditure;
 
 <tfoot>
     <tr>
-        <th valign="top">
-        </th>
+        <th valign="top"></th>
+        <th valign="top"></th>
         <th valign="top" style="text-align:right">
             <?= $total_works; ?>  
         </th>
@@ -120,11 +116,23 @@ $total += $district->totalexpenditure;
 
 <? if (!count($districts)) : ?>
     <tr>
-        <td colspan="20" align="center">
+        <td colspan="9" align="center">
             <?= @text('No Items Found'); ?>
         </td>
     </tr>
 <? endif; ?>    
 </tbody>    
 </table>
+<input name="option" value="com_enrega" type="hidden" />
 </form>
+
+<table width="100%">
+    <tr>
+		<td colspan="6"></td>
+		<td colspan="3" align="right">
+			<a href="index.php?option=com_enrega&view=districts&format=csv" class="button">Export</a>
+
+			<a href="index.php?option=com_enrega&view=districts&format=print" class="button">Print</a>
+		</td>
+    </tr>
+</table>
