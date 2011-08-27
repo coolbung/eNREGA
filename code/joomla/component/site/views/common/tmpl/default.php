@@ -9,24 +9,19 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 ?>
 
 <div id="tools">
+<form action="<?= @route() ?>" method="get" class="-koowa-grid">
 <table width="100%">
 	<tr>
 		<td><?= @text('Common Settings'); ?></td>
 		<td> 
-		<select onchange="this.form.submit()" name="language" class="inputbox">
+		<select onchange="this.form.submit()" name="lang" class="inputbox">
 			<option>Language / भाषा </option>
-			<option value="En">English</option>
-			<option value="Mr">मराठी</option>
+			<option value="en">English</option>
+			<option value="mr">मराठी</option>
 		</select> 
 		</td>
 		<td>
-		<select class="inputbox">
-			<option>State / राज्य</option>
-			<option>Maharashtra</option>
-		</select>
-		</td>
-		<td>
-		<select class="inputbox">
+		<select class="inputbox" name="year">
 			<option>Year / साल</option>
 			<option value="2009">2009-10</option>
 			<option value="2010">2010-11</option>
@@ -34,7 +29,11 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 		</td>
 		<td></td>
 	</tr>
+</table>
+<input name="id" type="hidden" value="<?= KRequest::get('get.id', 'int'); ?>" />
+</form>
 
+<table width="100%">
 	<tr>
 		<td><?= @text('Quick Search'); ?></td>
 		<td><?= @helper('layout.quicksearch', array('view'=>'states')); ?></td>
@@ -43,8 +42,15 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 		<td><?= @helper('layout.quicksearch', array('view'=>'panchayats')); ?></td>
 	</tr>
 </table>
-
 </div>
-<div style="text-align:right"><a onclick="$('tools').toggle(); return false;" href="#">Show/Hide Search & Config</a></div>
 <hr />
-Maharashtra > All Districts
+<table width="100%">
+	<tr>
+		<td style="text-align:left"><?= @helper('layout.breadcrumb'); ?></td>
+		<td style="text-align:right"><a onclick="$('tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
+	</tr>
+</table>
+
+
+
+
