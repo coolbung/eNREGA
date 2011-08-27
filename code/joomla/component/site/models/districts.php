@@ -4,6 +4,7 @@ class ComEnregaModelDistricts extends ComDefaultModelDefault {
 
 	public function __construct(KConfig $config)
 	{
+		$this->_state->limit = 200;
 		parent::__construct($config);
 	}
      
@@ -27,6 +28,13 @@ class ComEnregaModelDistricts extends ComDefaultModelDefault {
 		if ($this->_state->search) {
 			$query->where('tbl.districtname_en', 'LIKE', '%'.$this->_state->search.'%');
 		}
+		$query->where('tbl.stateuniqueid','=',KRequest::get('get.id', 'int'));
+    }
+    
+    protected function _buildQueryLimit(KDatabaseQuery $query)
+    {
+
+		$query->limit(200, 'default');
     }
     
 }

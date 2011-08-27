@@ -25,6 +25,24 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
 		return $op;
     }
     
+    public function humancurrency($config = array()) {
+		$number = round($config['number']);
+		$op = '';
+		$op = '₹ ';
+		$crore = 10000000;
+		$lac = 100000;
+
+		if ($number > $crore) {
+			$op .= round(($number / $crore), 1) . ' ' . JText::_('crore');
+		} elseif ($number > $lac) {
+			$op .= round(($number / $lac), 1) . ' ' . JText::_('lakh');
+		} else {
+			$op .= number_format($number);
+		}
+		
+		return $op;
+	}
+    
     public function percent ($config = array()) {
 		return round($config['number'], 1);
 	}
@@ -32,10 +50,10 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
 	public function name($config = array()) {
 	
 		$row = $config['district'];
-		if (KRequest::get('get.language', 'string') == 'Mr' && $row->DistrictName_Mr)
+		if (KRequest::get('get.lang', 'string') == 'mr' && $row->DistrictName_Mr)
 		return $row->DistrictName_Mr;
 		else
-		return $row->DistrictName_En;
+		return ucfirst(strtolower($row->DistrictName_En));
 	}
     
 
