@@ -26,8 +26,9 @@ foreach ($jsonarray['district'] as $district){
  	$matExpn= $district['matExpn']
 	$works_no= $district['works_no']
 	$labour_exp= $district['labour_exp']
+	$year=$district['year']
 
-	$query = "INSERT INTO rega_enrega_districtexpenses (districtuniqueid, NoOfWorks, LabourExpenditures, MaterialExpenditures, Link) VALUES (".$code.",".$works_no.",".$labour_exp.",".$matExpn.",'".$url."');"
+	$query = "INSERT INTO rega_enrega_districtexpenses (districtuniqueid, Year, NoOfWorks, LabourExpenditures, MaterialExpenditures, Link) VALUES (".$code.",".$year.",".$works_no.",".$labour_exp.",".$matExpn.",'".$url."');"
 	
 	mysql_query($query) or die('Query failed while inserting for districts');
 	
@@ -40,7 +41,7 @@ foreach ($jsonarray['district'] as $district){
 		$works_no= $taluka['works_no']
 		$labour_exp= $taluka['labour_exp']
 
-		$query = "INSERT INTO rega_enrega_blockexpenses (BlockUniqueId, NoOfWorks, LabourExpenditures, MaterialExpenditures, Link) VALUES (".$code.",".$works_no.",".$labour_exp.",".$matExpn.",'".$url."');"
+		$query = "INSERT INTO rega_enrega_blockexpenses (BlockUniqueId, Year, NoOfWorks, LabourExpenditures, MaterialExpenditures, Link) VALUES (".$code.",".$year.",".$works_no.",".$labour_exp.",".$matExpn.",'".$url."');"
 		
 		mysql_query($query) or die('Query failed while inserting for taluka');
 		foreach ($taluka['panchayat'] as $panchayat){
@@ -51,7 +52,7 @@ foreach ($jsonarray['district'] as $district){
 			$works_no= $panchayat['works_no']
 			$labour_exp= $panchayat['labour_exp']
 
-			$query = "INSERT INTO rega_enrega_grampanchayatexpenses (GramPanchayatUniqueId, NoOfWorks, LabourExpenditures, MaterialExpenditures) VALUES (".$code.",".$works_no.",".$labour_exp.",".$matExpn.");"
+			$query = "INSERT INTO rega_enrega_grampanchayatexpenses (GramPanchayatUniqueId, Year, NoOfWorks, LabourExpenditures, MaterialExpenditures) VALUES (".$code.",".$year.",".$works_no.",".$labour_exp.",".$matExpn.");"
 			
 			mysql_query($query) or die('Query failed while inserting for panchayat');
 			
