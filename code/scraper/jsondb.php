@@ -8,9 +8,9 @@ $jsonfile = fopen("/data.json", "r");
 $jsonarray=var_dump(json_decode($jsonfile, true));
 
 //open database connection
-$dbhost = 'mysql.enrega.dreamhosters.com:3306';
-$dbuser = 'enrega';
-$dbpass = 'hBBkaCwz';
+$dbhost = '';
+$dbuser = '';
+$dbpass = '';
 
 $conn = mysql_connect($dbhost, $dbuser, $dbpass) or die                      ('Error connecting to mysql');
 
