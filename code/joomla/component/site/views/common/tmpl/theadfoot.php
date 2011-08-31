@@ -1,3 +1,4 @@
+
 <thead>
 	<tr>
         <th valign="top"></th>
@@ -40,7 +41,7 @@
         <th valign="top"></th>
         <th valign="top"><?= @text('Total'); ?></th>
         <th valign="top" style="text-align:right">
-            <?= number_format($total_works); ?>  
+            <?= @helper('format.number', array('number' => $total_works)); ?>  
         </th>
         <th valign="top" style="text-align:right" class="leftborder">
             <?= @helper('format.humancurrency', array('number' => $total_labour)); ?>  
@@ -54,18 +55,18 @@
             <?= @helper('format.humancurrency', array('number' => $total)); ?>  
         </th>
         <th valign="top" style="text-align:right">
-					<?= @helper('format.humancurrency', array('number' => ($total / $total_works))); ?>
+			<?= @helper('format.humancurrency', array('number' => ($total / $total_works))); ?>
         </th>
     </tr>
 
 </thead>
 
 <tfoot>
-    <tr>
+    <tr class="dark">
         <th valign="top"></th>
         <th valign="top"><?= @text('Total'); ?></th>
         <th valign="top" style="text-align:right">
-            <?= number_format($total_works); ?>  
+            <?= @helper('format.number', array('number' => $total_works)); ?>
         </th>
         <th valign="top" style="text-align:right" class="leftborder">
             <?= @helper('format.humancurrency', array('number' => $total_labour)); ?>  
@@ -79,7 +80,7 @@
             <?= @helper('format.humancurrency', array('number' => $total)); ?>  
         </th>
         <th valign="top" style="text-align:right">
-					<?= @helper('format.humancurrency', array('number' => ($total / $total_works))); ?>
+			<?= @helper('format.humancurrency', array('number' => ($total / $total_works))); ?>
         </th>
     </tr>
 </tfoot>

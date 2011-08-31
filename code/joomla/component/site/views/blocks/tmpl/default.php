@@ -50,7 +50,13 @@ $total += $block->totalexpenditure;
     </tr>
 <? endforeach; ?>
 
-<?php echo @template('site::com.enrega.view.common.theadfoot'); ?>
+<?php 
+$vars['total_works'] = $total_works;
+$vars['total_labour'] = $total_labour;
+$vars['total_material'] = $total_material;
+$vars['total'] = $total;
+echo @template('site::com.enrega.view.common.theadfoot', $vars);
+?>
 
 <? if (!count($blocks)) : ?>
     <tr>
