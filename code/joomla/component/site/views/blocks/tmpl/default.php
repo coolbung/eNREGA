@@ -30,22 +30,26 @@ $total += $block->totalexpenditure;
 			<?= number_format($block->NoOfWorks) ?>
         </td>
         <td align="right" class="leftborder">
-			<?= @helper('format.humancurrency', array('number' => $block->LabourExpenditures)) ?>
+			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->LabourExpenditures)) ?></span>
+			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->LabourExpenditures)) ?></span>
         </td>
         <td align="right">
 			<?= @helper('format.percent', array('number' => $block->labourpercent)) ?>
         </td>
         <td align="right" class="leftborder">
-			<?= @helper('format.humancurrency', array('number' => $block->MaterialExpenditures)) ?>
+			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->MaterialExpenditures)) ?></span>
+			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->MaterialExpenditures)) ?></span>
         </td>
         <td align="right" class="rightborder">
 			<?= @helper('format.percent', array('number' => $block->materialpercent)) ?>
         </td>
         <td align="right">
-			<?= @helper('format.humancurrency', array('number' => $block->totalexpenditure)) ?>
+			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->totalexpenditure)) ?></span>
+			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->totalexpenditure)) ?></span>
         </td>
         <td align="right">
-			<?= @helper('format.humancurrency', array('number' => $block->averageperwork)) ?>
+			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->averageperwork)) ?></span>
+			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->averageperwork)) ?></span>
         </td>
     </tr>
 <? endforeach; ?>
