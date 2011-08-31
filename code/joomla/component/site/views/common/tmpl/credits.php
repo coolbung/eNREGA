@@ -7,9 +7,9 @@ $o[] = array('reddy.kapil@gmail.com', 'Kapil');
 $o[] = array('ravibalgi@gmail.com', 'Ravi');
 $o[] = array('milindmilind@gmail.com', 'Milind');
 $o[] = array('atheist.nikhil@gmail.com', 'Nikhil');
-
+shuffle($o);
 ?>
-ashwin
+
 
 <table>
 <?php foreach ($o as $i) : ?>

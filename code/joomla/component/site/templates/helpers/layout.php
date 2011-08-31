@@ -82,4 +82,41 @@ EOT;
 		return implode(' > ', $html);
 
 	}
+	
+	public function lastupdate() {
+		
+		$view = KRequest::get('get.view', 'cmd', 'districts');
+		$id = KRequest::get('get.id', 'int');
+		$db = JFactory::getDBO();
+
+		switch ($view) {
+			
+			case 'states':
+			break;
+			
+			case 'districts':
+			$qry = "SELECT x.modifiedon 
+			FROM #__enrega_districtexpenses AS x, #__enrega_districts AS d
+			WHERE x.districtuniqueid = d.districtid AND d.stateuniqueid = {$id}
+			ORDER BY x.modifiedon DESC LIMIT 1
+			";
+			break;
+			
+			case 'blocks':
+			$qry = "SELECT x.modifiedon 
+			FROM #__enrega_blockexpenses AS x, #__enrega_blocks AS b
+			WHERE x.blockuniqueid = b.blockcode AND b.districtuniqueid = {$id}
+			ORDER BY x.modifiedon DESC LIMIT 1
+			";
+			break;			
+		}
+		
+		$db->setQuery($qry);
+		$date = $db->loadResult();
+		
+		return strftime('%e/%m/%Y', strtotime($date));
+
+	}
+	
+	public function getlink() {}
 }

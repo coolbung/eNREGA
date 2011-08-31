@@ -48,14 +48,36 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
 	}
 	
 	public function name($config = array()) {
-	
-		$row = $config['district'];
-		if (KRequest::get('get.lang', 'string') == 'mr' && $row->DistrictName_Mr)
-		return $row->DistrictName_Mr;
+		
+		$row = $config['name'];
+		$lang = KRequest::get('get.lang', 'cmd', 'en');
+		$view = substr(KRequest::get('get.view', 'cmd'), 0, -1);
+		$fnameen = ucfirst($view) . 'Name_En';
+		$fnamemr = ucfirst($view) . 'Name_Mr';
+
+		if ($row->{$fnamemr} && $lang == 'mr')
+		return $row->{$fnamemr};
 		else
-		return ucfirst(strtolower($row->DistrictName_En));
+		return ucfirst(strtolower($row->{$fnameen}));
 	}
     
-
-
+	public function number ($config = array()) {
+		$tmp = money_format('%!i', $config['number']);
+		$pcs = explode('.', $tmp);
+		return $pcs[0];
+		
+		$pcs = @explode('.', $number);
+		if (strlen($pcs[0]) <= 3) {
+			$left = $pcs[0];
+		} else {
+			$lpcs = str_split(substr($pcs[0], 0, -3), 2);
+			$lpcs[] = substr($pcs[0], -3);
+			$left = implode(',', $lpcs);
+		}
+		
+		if (count($pcs) > 1)
+			return implode('.', array($left, $pcs[1]));
+		else
+			return $left;
+	}
 }

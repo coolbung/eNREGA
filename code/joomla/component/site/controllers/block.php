@@ -1,0 +1,1 @@
+<? class ComEnregaControllerBlock extends ComDefaultControllerResource {}
