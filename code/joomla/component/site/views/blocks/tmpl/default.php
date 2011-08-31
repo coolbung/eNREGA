@@ -6,15 +6,6 @@ defined('KOOWA') or die ('Phut!');
 
 <form action="<?= @route() ?>" method="get" class="-koowa-grid">
 <table width="100%" class="datalist">
-<!--
-<tfoot>
-       <tr>
-            <td colspan="9">
-                 <?= @helper('paginator.pagination', array('total' => $total)) ?>
-            </td>
-        </tr>
-</tfoot>
--->
 <tbody>
 <? 
 $total_works = $total_labour = $total_material = $total = 0;
