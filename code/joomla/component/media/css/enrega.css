@@ -4,3 +4,4 @@ td.rightborder, th.rightborder {border-right: 1px solid #99D6EB}
 td.bothborder, th.bothborder {border-right: 1px solid #99D6EB; border-left: 1px solid #99D6EB}
 .currency_number {display:none}
 .dark{background-color: #313435; color: #FFF}
+.grayfill{color: #999}

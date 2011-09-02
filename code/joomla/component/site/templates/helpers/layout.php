@@ -8,7 +8,7 @@ class ComEnregaTemplateHelperLayout extends KTemplateHelperDate
 		
 		$current_view = KRequest::get('get.view', 'cmd');
 		$view = $config['view'] ? $config['view'] : 'district';
-		$uc = ucfirst($view);
+		$uc = JText::_(ucfirst($view));
 		$itemid = KRequest::get('get.Itemid', 'int');
 		$inputname = 'search_'.$view;
 		if (KRequest::get('get.search', 'string') && $current_view == $view) {
@@ -21,7 +21,9 @@ class ComEnregaTemplateHelperLayout extends KTemplateHelperDate
 		<form action="index.php" method="get">
 		<input type="hidden" name="option" value="com_enrega" />
 		<input type="hidden" name="view" value="{$view}" />
-		<input type="text" class="inputbox" name="search" value="{$value}" onclick="if (this.value=='{$uc}') this.value='';" />
+		<input type="text" class="inputbox grayfill" name="search" value="{$value}" 
+			onfocus="if (this.value=='{$uc}') {this.value=''; jQuery(this).removeClass('grayfill')}"
+			onblur="if (this.value=='') {this.value='{$uc}'; jQuery(this).addClass('grayfill')}" />
 		<input type="hidden" name="Itemid" value="{$itemid}" />
 		</form>
 EOT;

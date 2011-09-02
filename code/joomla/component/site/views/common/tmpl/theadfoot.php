@@ -1,4 +1,3 @@
-
 <thead>
 	<tr>
         <th valign="top"></th>
