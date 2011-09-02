@@ -1,1 +1,1 @@
-<? class ComEnregaControllerBlock extends ComDefaultControllerResource {}
+<?php class ComEnregaControllerBlock extends ComDefaultControllerResource {}

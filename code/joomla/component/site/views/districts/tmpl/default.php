@@ -8,7 +8,7 @@ $id = KRequest::get('get.id', 'int');
 <table width="100%" class="datalist">
 
 <tbody>
-<? 
+<?php
 $total_works = $total_labour = $total_material = $total = 0;
 $i = 0; 
 
