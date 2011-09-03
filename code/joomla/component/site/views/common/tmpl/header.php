@@ -9,7 +9,7 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 <style src="media://com_enrega/css/enrega.css" /> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
 <script src="media://com_enrega/js/enrega.js" />
-<?=@helper('site::com.enrega.template.helper.listbox.languages', $services, 'services_service_id', '') ?> 
+
 <div id="tools">
 <form action="<?= @route() ?>" method="get" class="-koowa-grid">
 <table width="100%">
