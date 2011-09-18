@@ -11,7 +11,7 @@
     <tr>
         <th valign="top"><?= @text('Sr. #'); ?></th>
         <th valign="top">
-            <?= @helper('grid.sort', array('column' => 'DistrictName_En', 'title'=> 'Name')); ?>
+            <?= @helper('grid.sort', array('column' => 'placename', 'title'=> 'Name')); ?>
         </th>
         <th valign="top" style="text-align:right">
             <?= @helper('grid.sort', array('column' => 'NoOfWorks', 'title' => 'Works')); ?>  
@@ -35,29 +35,6 @@
             <?= @helper('grid.sort', array('column' => 'averageperwork', 'title' => 'Average per work')); ?>  
         </th>
     </tr>
-
-    <tr style="border-top:1px solid #99D6EB">
-        <th valign="top"></th>
-        <th valign="top"><?= @text('Total'); ?></th>
-        <th valign="top" style="text-align:right">
-            <?= @helper('format.number', array('number' => $total_works)); ?>  
-        </th>
-        <th valign="top" style="text-align:right" class="leftborder">
-            <?= @helper('format.humancurrency', array('number' => $total_labour)); ?>  
-        </th>
-        <th valign="top" style="text-align:right"></th>
-        <th valign="top" style="text-align:right" class="leftborder">
-            <?= @helper('format.humancurrency', array('number' => $total_material)); ?>  
-        </th>
-        <th valign="top" style="text-align:right" class="rightborder"></th>
-        <th valign="top" style="text-align:right">
-            <?= @helper('format.humancurrency', array('number' => $total)); ?>  
-        </th>
-        <th valign="top" style="text-align:right">
-			<?= @helper('format.humancurrency', array('number' => ($total / $total_works))); ?>
-        </th>
-    </tr>
-
 </thead>
 
 <tfoot>

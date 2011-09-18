@@ -18,12 +18,12 @@ $total_works += $district->NoOfWorks;
 $total_labour += $district->LabourExpenditures;
 $total_material += $district->MaterialExpenditures;
 $total += $district->totalexpenditure;
-
+$link = 'view=blocks&id='.$district->districtid.'&Itemid='.KRequest::get('get.Itemid', 'int');
 ?>
     <tr class="row<?php echo $i % 2; ?>">
 		<td><?php echo $i; ?></td>
         <td align="left">
-                <a href="<?= @route('view=blocks&id='.$district->districtid); ?>">
+                <a href="<?= @route($link); ?>">
                     <?= @helper('format.name', array('name' => $district)) ?>
                 </a>
         </td>

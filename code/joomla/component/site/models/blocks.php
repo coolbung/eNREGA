@@ -12,7 +12,7 @@ class ComEnregaModelBlocks extends KModelTable {
     
     protected function _buildQueryColumns(KDatabaseQuery $query)
     {
-		$query->select(array('tbl.*, bx.*,
+		$query->select(array('tbl.*, bx.*, tbl.blockname_en AS placename,
 		(bx.labourexpenditures + bx.materialexpenditures) AS totalexpenditure,
 		(100 * bx.labourexpenditures / (bx.labourexpenditures + bx.materialexpenditures)) AS labourpercent,
 		(100 * bx.materialexpenditures / (bx.labourexpenditures + bx.materialexpenditures)) AS materialpercent,

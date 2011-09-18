@@ -1,4 +1,4 @@
-<div class="componentheading"><?= @text('Details of Work')?></div>
+<!--<div class="componentheading"><?= @text('Details of Work')?></div>-->
 <?php
 // Declare vars needed for form
 $search_state = KRequest::get('get.search_state', 'string') ? KRequest::get('get.search_state') : @text('State');
@@ -17,14 +17,14 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 		<td><?= @text('Common Settings'); ?></td>
 		<td> 
 		<select onchange="this.form.submit()" name="lang" class="inputbox">
-			<option>Language / भाषा </option>
+			<option value="">Language / भाषा </option>
 			<option value="en">English</option>
 			<option value="mr">मराठी</option>
 		</select> 
 		</td>
 		<td>
 		<select class="inputbox" name="year">
-			<option>Year / साल</option>
+			<option value="">Year / साल</option>
 			<option value="2009">2009-10</option>
 			<option value="2010">2010-11</option>
 		</select>
@@ -35,6 +35,7 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 	</tr>
 </table>
 <input name="id" type="hidden" value="<?= KRequest::get('get.id', 'int'); ?>" />
+<input name="Itemid" type="hidden" value="<?= KRequest::get('get.Itemid', 'int'); ?>" />
 </form>
 
 <table width="100%">
