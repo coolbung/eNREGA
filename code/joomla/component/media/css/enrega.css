@@ -1,7 +1,30 @@
-table.datalist tr:hover { background-color: #99D6EB}
-td.leftborder, th.leftborder {border-left: 1px solid #99D6EB}
-td.rightborder, th.rightborder {border-right: 1px solid #99D6EB}
-td.bothborder, th.bothborder {border-right: 1px solid #99D6EB; border-left: 1px solid #99D6EB}
+/* CSS for div -> table layout */
+div.table-table {display:table; width:900px}
+div.table-row {display:table-row}
+div.table-cell {display:table-cell; padding:5px}
+div.datalist {width: 100%; height:300px; display:block; overflow-y: auto}
+div.datalist div.table-row:hover { background-color: #99D6EB}
+.cell1 {width: 5%}
+.cell2 {width: 10%}
+.cell3 {width: 10%}
+.cell4 {width: 15%}
+.cell5 {width: 10%}
+.cell6 {width: 15%}
+.cell7 {width: 10%}
+.cell8 {width: 15%}
+.cell9 {width: 10%}
+.leftborder {border-left: 1px solid #99D6EB}
+.rightborder {border-right: 1px solid #99D6EB}
+.bothborder {border-right: 1px solid #99D6EB; border-left: 1px solid #99D6EB}
+.bottomborder {border-bottom: 1px solid #99D6EB;}
 .currency_number {display:none}
 .dark{background-color: #313435; color: #FFF}
 .grayfill{color: #999}
+#tools {display:none}
+
+/* Standard stuff */
+.dark a {color: #FFF; text-decoration:underline}
+.dark a:hover, .dark a:active {color: #FFF; text-decoration:none}
+a.-koowa-asc  { background: url(../images/white-up-arrow.png) no-repeat right; padding-right: 18px;}
+a.-koowa-desc  { background: url(../images/white-down-arrow.png) no-repeat right; padding-right: 18px;}
+

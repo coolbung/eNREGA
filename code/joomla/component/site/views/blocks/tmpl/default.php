@@ -1,72 +1,76 @@
 <?php
 defined('KOOWA') or die ('Phut!');
+$id = KRequest::get('get.id', 'int');
 ?>
 
 <?php echo @template('site::com.enrega.view.common.header'); ?>
 
 <form action="<?= @route() ?>" method="get" class="-koowa-grid">
-<table width="100%" class="datalist">
-<tbody>
-<? 
+<?php echo @template('site::com.enrega.view.common.thead'); ?>
+
+<div class="datalist">
+<div class="table-table">
+<?php 
 $total_works = $total_labour = $total_material = $total = 0;
 $i = 0; 
 
 foreach ($blocks as $block) : 
-$i++;
 $total_works += $block->NoOfWorks;
 $total_labour += $block->LabourExpenditures;
 $total_material += $block->MaterialExpenditures;
 $total += $block->totalexpenditure;
-
+$link = 'view=panchayats&id='.$block->BlockCode.'&Itemid='.KRequest::get('get.Itemid', 'int');
 ?>
-    <tr class="row<?php echo $i % 2; ?>">
-		<td><?php echo $i; ?></td>
-        <td align="left">
-                <a href="<?= @route('view=panchayats&id='.$block->BlockCode); ?>">
+    <div class="table-row row<?php echo $i % 2; $i++ ?>">
+		<div class="table-cell cell1"><?php echo $i; ?></div>
+        <div align="left" class="table-cell cell2">
+                <a href="<?= @route($link); ?>">
                     <?= @helper('format.name', array('name' => $block)) ?>
                 </a>
-        </td>
-        <td align="right">
+        </div>
+        <div align="right" class="table-cell cell3">
 			<?= number_format($block->NoOfWorks) ?>
-        </td>
-        <td align="right" class="leftborder">
+        </div>
+        <div align="right" class="leftborder table-cell cell4">
 			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->LabourExpenditures)) ?></span>
 			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->LabourExpenditures)) ?></span>
-        </td>
-        <td align="right">
+        </div>
+        <div align="right" class="table-cell cell5">
 			<?= @helper('format.percent', array('number' => $block->labourpercent)) ?>
-        </td>
-        <td align="right" class="leftborder">
+        </div>
+        <div align="right" class="leftborder table-cell cell6">
 			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->MaterialExpenditures)) ?></span>
 			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->MaterialExpenditures)) ?></span>
-        </td>
-        <td align="right" class="rightborder">
+        </div>
+        <div align="right" class="rightborder table-cell cell7">
 			<?= @helper('format.percent', array('number' => $block->materialpercent)) ?>
-        </td>
-        <td align="right">
+        </div>
+        <div align="right" class="table-cell cell8">
 			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->totalexpenditure)) ?></span>
 			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->totalexpenditure)) ?></span>
-        </td>
-        <td align="right">
+        </div>
+        <div align="right" class="table-cell cell9">
 			<span class="currency_human"><?= @helper('format.humancurrency', array('number' => $block->averageperwork)) ?></span>
 			<span class="currency_number"><?= @helper('format.currency', array('number' => $block->averageperwork)) ?></span>
-        </td>
-    </tr>
+        </div>
+    </div>
 <? endforeach; ?>
+</div>
+</div>
 
 <?php 
 $vars['total_works'] = $total_works;
 $vars['total_labour'] = $total_labour;
 $vars['total_material'] = $total_material;
 $vars['total'] = $total;
-echo @template('site::com.enrega.view.common.theadfoot', $vars);
+echo @template('site::com.enrega.view.common.tfoot', $vars);
 ?>
 
 <? if (!count($blocks)) : ?>
     <tr>
         <td colspan="9" align="center">
             <?= @text('No Items Found'); ?>
-        </td>
+        </div>
     </tr>
 <? endif; ?>    
 </tbody>    
