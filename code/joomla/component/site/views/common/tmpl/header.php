@@ -51,6 +51,13 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 <table width="100%">
 	<tr>
 		<td style="text-align:left"><?= @helper('layout.breadcrumb'); ?></td>
+		<td style="text-align:center">
+		<h2>
+			<a href="<?=@route('&year=2010')?>"><</a>
+			<span class="currentyear">2010-2011</span>
+			<a href="<?=@route('&year=2012')?>">></a>
+		</h2>
+		</td>
 		<td style="text-align:right"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
 	</tr>
 </table>

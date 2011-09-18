@@ -4,7 +4,6 @@ class ComEnregaModelDistricts extends ComDefaultModelDefault {
 
 	public function __construct(KConfig $config)
 	{
-		$this->_state->limit = 100;
 		parent::__construct($config);
 	}
      
@@ -41,4 +40,17 @@ class ComEnregaModelDistricts extends ComDefaultModelDefault {
 		$query->limit(100, 'default');
     }
     
+	protected function _buildQueryOrder(KDatabaseQuery $query) 
+	{
+        $sort = $this->_state->sort;
+        $direction  = strtoupper($this->_state->direction);
+
+		if ( $sort) {
+			$query->order($this->getTable()->mapColumns($sort), $direction);
+		}
+        
+		if (empty($sort)){
+			$query->order('placename','ASC');
+        } 
+	}
 }

@@ -38,4 +38,18 @@ class ComEnregaModelBlocks extends KModelTable {
     {
 		$query->limit(100, 'default');
     }
+    
+	protected function _buildQueryOrder(KDatabaseQuery $query) 
+	{
+        $sort = $this->_state->sort;
+        $direction  = strtoupper($this->_state->direction);
+
+		if ( $sort) {
+			$query->order($this->getTable()->mapColumns($sort), $direction);
+		}
+        
+		if (empty($sort)){
+			$query->order('placename','ASC');
+        } 
+	}
 }
