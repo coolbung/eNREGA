@@ -7,6 +7,7 @@ $search_block = KRequest::get('get.search_block', 'string') ? KRequest::get('get
 $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::get('get.search_panchayat') : @text('Panchayat');
 ?>
 <style src="media://com_enrega/css/enrega.css" /> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
 <script src="media://com_enrega/js/enrega.js" />
 
 <div id="tools" class="table-table">
