@@ -55,6 +55,13 @@ $link = 'view=panchayats&id='.$block->BlockCode.'&Itemid='.KRequest::get('get.It
         </div>
     </div>
 <? endforeach; ?>
+<? if (!count($blocks)) : ?>
+    <div class="table-row">
+        <div align="center">
+            <?= @text('No Items Found'); ?>
+        </div>
+    </div>
+<? endif; ?>    
 </div>
 </div>
 
@@ -65,16 +72,6 @@ $vars['total_material'] = $total_material;
 $vars['total'] = $total;
 echo @template('site::com.enrega.view.common.tfoot', $vars);
 ?>
-
-<? if (!count($blocks)) : ?>
-    <tr>
-        <td colspan="9" align="center">
-            <?= @text('No Items Found'); ?>
-        </div>
-    </tr>
-<? endif; ?>    
-</tbody>    
-</table>
 
 </form>
 

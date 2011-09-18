@@ -54,16 +54,6 @@ $link = 'view=blocks&id='.$district->districtid.'&Itemid='.KRequest::get('get.It
         </div>
     </div>
 <? endforeach; ?>
-</div>
-</div>
-<?php 
-$vars['total_works'] = $total_works;
-$vars['total_labour'] = $total_labour;
-$vars['total_material'] = $total_material;
-$vars['total'] = $total;
-echo @template('site::com.enrega.view.common.tfoot', $vars);
-?>
-
 <? if (!count($districts)) : ?>
     <div class="table-row">
         <div align="center">
@@ -71,8 +61,16 @@ echo @template('site::com.enrega.view.common.tfoot', $vars);
         </div>
     </div>
 <? endif; ?>    
-
 </div>
+</div>
+
+<?php 
+$vars['total_works'] = $total_works;
+$vars['total_labour'] = $total_labour;
+$vars['total_material'] = $total_material;
+$vars['total'] = $total;
+echo @template('site::com.enrega.view.common.tfoot', $vars);
+?>
 
 </form>
 

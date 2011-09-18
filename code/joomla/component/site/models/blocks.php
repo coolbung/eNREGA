@@ -22,15 +22,20 @@ class ComEnregaModelBlocks extends KModelTable {
 
     protected function _buildQueryWhere(KDatabaseQuery $query)
     {
-		$query->where('tbl.districtuniqueid','=',KRequest::get('get.id', 'int'));
+		$query->where('bx.year', '=', KRequest::get('session.year', 'int', date('Y')));
+		
 		if ($this->_state->search) {
 			$query->where('tbl.blockname_en', 'LIKE', '%'.$this->_state->search.'%');
+		}
+		
+		if (KRequest::get('get.id', 'int')) {
+			$query->where('tbl.districtuniqueid','=',KRequest::get('get.id', 'int'));
 		}
 
     }
     
     protected function _buildQueryLimit(KDatabaseQuery $query)
     {
-		$query->limit(200, 'default');
+		$query->limit(100, 'default');
     }
 }

@@ -2,7 +2,6 @@
 
 class ComEnregaTemplateHelperLayout extends KTemplateHelperDate
 {
-
     public function quicksearch($config = array())
     {
 		
@@ -32,12 +31,16 @@ EOT;
     }
     
     public function breadcrumb($config = array()) {
+		$search = KRequest::get('get.search', 'cmd', 'districts');
+		if ($search != 'districts') { return ''; }
+		
 		$view = KRequest::get('get.view', 'cmd', 'districts');
 		$id = KRequest::get('get.id', 'int');
+		$Itemid = KRequest::get('get.Itemid', 'int');
 		$db = JFactory::getDBO();
 		$lang = KRequest::get('get.lang', 'cmd', 'en');
 		
-		$breadcrumb[] = array('text' => JText::_('All States'), 'link' => 'index.php?option=com_enrega&view=states');
+		$breadcrumb[] = array('text' => JText::_('All States'), 'link' => 'index.php?option=com_enrega&view=states&Itemid='.$Itemid);
 		
 		switch ($view) {
 		
@@ -52,8 +55,8 @@ EOT;
 			WHERE b.districtuniqueid = {$id} AND b.districtuniqueid = d.districtid  AND d.stateuniqueid = s.stateid";
 			$db->setQuery($qry);
 			$row = $db->loadObject();
-			$breadcrumb[] = array('text' => $row->sname, 'link' => 'index.php?option=com_enrega&view=districts&id='.$row->sid);
-			$breadcrumb[] = array('text' => $row->dname, 'link' => 'index.php?option=com_enrega&view=blocks&id='.$row->did);
+			$breadcrumb[] = array('text' => $row->sname, 'link' => 'index.php?option=com_enrega&view=districts&id='.$row->sid.'&Itemid='.$Itemid);
+			$breadcrumb[] = array('text' => $row->dname, 'link' => 'index.php?option=com_enrega&view=blocks&id='.$row->did.'&Itemid='.$Itemid);
 			$breadcrumb[] = array('text' => JText::_('All Blocks'), 'link' => '');
 			break;
 			
@@ -63,7 +66,7 @@ EOT;
 			WHERE d.stateuniqueid = {$id} AND d.stateuniqueid = s.stateid";
 			$db->setQuery($qry);
 			$row = $db->loadObject();
-			$breadcrumb[] = array('text' => $row->sname, 'link' => 'index.php?option=com_enrega&view=districts&id='.$id);
+			$breadcrumb[] = array('text' => $row->sname, 'link' => 'index.php?option=com_enrega&view=districts&id='.$id.'&Itemid='.$Itemid);
 			$breadcrumb[] = array('text' => JText::_('All Districts'), 'link' => '');
 			break;
 			
@@ -119,6 +122,39 @@ EOT;
 		return strftime('%e/%m/%Y', strtotime($date));
 
 	}
+
+	public function getlink() {
+		
+		$view = KRequest::get('get.view', 'cmd', 'districts');
+		$id = KRequest::get('get.id', 'int');
+		$year = KRequest::get('session.year', 'int', date('Y'));
+		$db = JFactory::getDBO();
+
+		switch ($view) {
+			
+			case 'states':
+			break;
+			
+			case 'districts':
+			$qry = "SELECT sx.link
+			FROM #__enrega_districts AS d, #__enrega_stateexpenses AS sx
+			WHERE d.stateuniqueid=sx.stateuniqueid AND year = '{$year}'
+			";
+			break;
+			
+			case 'blocks':
+			$qry = "SELECT dx.link
+			FROM #__enrega_blocks AS b, #__enrega_districtexpenses AS dx
+			WHERE b.districtuniqueid=dx.districtuniqueid AND year = '{$year}'			
+			";
+			break;			
+		}
+
+		$db->setQuery($qry);
+		$link = $db->loadResult();
+		
+		return $link;
+
+	}
 	
-	public function getlink() {}
 }
