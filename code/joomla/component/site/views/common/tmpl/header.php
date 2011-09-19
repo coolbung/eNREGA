@@ -52,7 +52,7 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 	<tr>
 		<td style="text-align:left"><?= @helper('layout.breadcrumb'); ?></td>
 		<td style="text-align:center">
-		<h2>
+		<h2 class="year">
 			<a href="<?=@route('&year=2010')?>"><</a>
 			<span class="currentyear">2010-2011</span>
 			<a href="<?=@route('&year=2012')?>">></a>
