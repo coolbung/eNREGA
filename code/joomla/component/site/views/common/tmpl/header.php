@@ -5,6 +5,14 @@ $search_state = KRequest::get('get.search_state', 'string') ? KRequest::get('get
 $search_district = KRequest::get('get.search_district', 'string') ? KRequest::get('get.search_district') : @text('District');
 $search_block = KRequest::get('get.search_block', 'string') ? KRequest::get('get.search_block') : @text('Block');
 $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::get('get.search_panchayat') : @text('Panchayat');
+$thisyear = KRequest::get('session.year', 'int');
+$lastyear = $thisyear -1;
+$nextyear = $thisyear + 1;
+$showyear = $thisyear.' - '.$nextyear;
+echo round(0.154, 2, PHP_ROUND_HALF_UP); echo '|';
+echo round(0.154, 2, PHP_ROUND_HALF_DOWN); echo '|';
+echo round(0.154, 2, PHP_ROUND_HALF_EVEN); echo '|';
+echo round(0.154, 2, PHP_ROUND_HALF_ODD); echo '|';
 ?>
 <style src="media://com_enrega/css/enrega.css" /> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
@@ -53,9 +61,9 @@ $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::
 		<td style="text-align:left"><?= @helper('layout.breadcrumb'); ?></td>
 		<td style="text-align:center">
 		<h2 class="year">
-			<a href="<?=@route('&year=2010')?>"><</a>
-			<span class="currentyear">2010-2011</span>
-			<a href="<?=@route('&year=2012')?>">></a>
+			<a href="<?=@route('&year='.$lastyear)?>"><</a>
+			<span class="currentyear"><?=$showyear?></span>
+			<a href="<?=@route('&year='.$nextyear)?>">></a>
 		</h2>
 		</td>
 		<td style="text-align:right"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>

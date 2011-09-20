@@ -24,8 +24,8 @@ class ComEnregaModelDistricts extends ComDefaultModelDefault {
 
     protected function _buildQueryWhere(KDatabaseQuery $query)
     {
-		$query->where('dx.year','=',KRequest::get('session.year', 'int', date('Y')));
-		
+		$query->where('dx.year', '=', KRequest::get('session.year', 'int'));
+
 		if ($this->_state->search) {
 			$query->where('tbl.districtname_en', 'LIKE', '%'.$this->_state->search.'%');
 		}
