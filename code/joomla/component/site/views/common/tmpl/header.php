@@ -57,15 +57,15 @@ if ($nextyear > date('Y')) {
 
 <table width="100%">
 	<tr>
-		<td style="text-align:left"><?= @helper('layout.breadcrumb'); ?></td>
-		<td style="text-align:center">
+		<td style="text-align:left" width="30%"><?= @helper('layout.breadcrumb'); ?></td>
+		<td style="text-align:center" width="40%">
 		<h2 class="year">
 			<a href="<?=@route('&year='.$lastyear)?>"><</a>
 			<span class="currentyear"><?=$showyear?></span>
 			<a href="<?=@route('&year='.$nextyear)?>">></a>
 		</h2>
 		</td>
-		<td style="text-align:right"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
+		<td style="text-align:right" width="30%"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
 	</tr>
 </table>
 <hr />
