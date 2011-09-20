@@ -9,10 +9,9 @@ $thisyear = KRequest::get('session.year', 'int');
 $lastyear = $thisyear -1;
 $nextyear = $thisyear + 1;
 $showyear = $thisyear.' - '.$nextyear;
-echo round(0.154, 2, PHP_ROUND_HALF_UP); echo '|';
-echo round(0.154, 2, PHP_ROUND_HALF_DOWN); echo '|';
-echo round(0.154, 2, PHP_ROUND_HALF_EVEN); echo '|';
-echo round(0.154, 2, PHP_ROUND_HALF_ODD); echo '|';
+if ($nextyear > date('Y')) {
+	$nextyear = $thisyear;
+}
 ?>
 <style src="media://com_enrega/css/enrega.css" /> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
