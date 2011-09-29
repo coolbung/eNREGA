@@ -13,8 +13,7 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
     public function currency($config = array())
     {
 		$number = round($config['number']);
-		$op = '';
-		$op = '₹ ';
+		$op = self::rupee() . ' ';
 		$op .= money_format('%!i', $number);
 		
 		// Cheap, since it does not seem to work for removing decimals from money_format()
@@ -27,8 +26,7 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
     
     public function humancurrency($config = array()) {
 		$number = round($config['number']);
-		$op = '';
-		$op = '₹ ';
+		$op = self::rupee() . ' ';
 		$crore = 10000000;
 		$lac = 100000;
 
@@ -41,6 +39,10 @@ class ComEnregaTemplateHelperFormat extends KTemplateHelperDate
 		}
 		
 		return $op;
+	}
+    
+    public function rupee ($config = array()) {
+		return 'Rs.';
 	}
     
     public function percent ($config = array()) {

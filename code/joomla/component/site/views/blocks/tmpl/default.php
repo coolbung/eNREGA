@@ -19,7 +19,7 @@ $total_works += $block->NoOfWorks;
 $total_labour += $block->LabourExpenditures;
 $total_material += $block->MaterialExpenditures;
 $total += $block->totalexpenditure;
-$link = 'view=grampanchayats&id='.$block->BlockCode.'&Itemid='.KRequest::get('get.Itemid', 'int');
+$link = 'view=panchayats&id='.$block->BlockCode.'&Itemid='.KRequest::get('get.Itemid', 'int');
 ?>
     <div class="table-row row<?php echo $i % 2; $i++ ?>">
 		<div class="table-cell cell1"><?php echo $i; ?></div>
