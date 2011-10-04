@@ -10,7 +10,7 @@ class ComEnregaDispatcher extends ComDefaultDispatcher {
         if($config->request->view) {
             $config->controller = $config->request->view;
         }
-        
+        KRequest::set('session.year', null);
         // Data year handling
         $getyear 		= KRequest::get('get.year', 'int');
         $sessionyear 	= KRequest::get('session.year', 'int');
@@ -18,7 +18,25 @@ class ComEnregaDispatcher extends ComDefaultDispatcher {
         if ($getyear) {
 			KRequest::set('session.year', $getyear);
 		} elseif (!$sessionyear) {
-			KRequest::set('session.year', date('Y'));
+			KRequest::set('session.year', $this->getFY(date('Y-m-d'), '4/1', '3/30'));
 		}
     }
+    
+    function getFY($inputDate, $fyStart, $fyEnd){
+		$date = strtotime($inputDate);
+		$inputyear = strftime('%Y',$date);
+		   
+		$fystartdate = strtotime($fyStart.$inputyear);
+		$fyenddate = strtotime($fyEnd.$inputyear);
+
+		if($date < $fyenddate){
+			$fy = intval($inputyear);
+		}else{
+			$fy = intval(intval($inputyear) + 1);
+		}
+		
+		$fystr = ($fy-1) . '-' . $fy;
+		return $fystr;
+   
+	}
 }

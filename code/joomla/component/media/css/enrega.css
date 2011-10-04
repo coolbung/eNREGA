@@ -13,14 +13,13 @@ div.datalist div.table-row:hover { background-color: #99D6EB}
 .cell7 {width: 10%}
 .cell8 {width: 15%}
 .cell9 {width: 10%}
-.leftborder {border-left: 1px solid #99D6EB}
-.rightborder {border-right: 1px solid #99D6EB}
-.bothborder {border-right: 1px solid #99D6EB; border-left: 1px solid #99D6EB}
-.bottomborder {border-bottom: 1px solid #99D6EB;}
+.leftborder {border-left: 1px solid #313435}
+.rightborder {border-right: 1px solid #313435}
+.bothborder {border-right: 1px solid #313435; border-left: 1px solid #313435}
+.bottomborder {border-bottom: 1px solid #313435;}
 .currency_number {display:none}
 .dark{background-color: #313435; color: #FFF}
 .grayfill{color: #999}
-#tools {display:none}
 
 /* Standard stuff */
 .dark a {color: #FFF; text-decoration:underline}

@@ -5,22 +5,29 @@ $search_state = KRequest::get('get.search_state', 'string') ? KRequest::get('get
 $search_district = KRequest::get('get.search_district', 'string') ? KRequest::get('get.search_district') : @text('District');
 $search_block = KRequest::get('get.search_block', 'string') ? KRequest::get('get.search_block') : @text('Block');
 $search_panchayat = KRequest::get('get.search_panchayat', 'string') ? KRequest::get('get.search_panchayat') : @text('Panchayat');
-$thisyear = KRequest::get('session.year', 'int');
-$lastyear = $thisyear -1;
-$nextyear = $thisyear + 1;
-$showyear = $thisyear.' - '.$nextyear;
+
+$showyear = KRequest::get('session.year', 'string');
+$thisyear = (int) KRequest::get('session.year', 'int');
+
+$lastyear 		= $thisyear -1;
+$show_lastyear	= $lastyear . '-' . ($lastyear+1);
+
+$nextyear 		= $thisyear + 1;
 if ($nextyear > date('Y')) {
 	$nextyear = $thisyear;
 }
+$show_nextyear	= $nextyear . '-' . ($nextyear+1);
+
 ?>
 <style src="media://com_enrega/css/enrega.css" /> 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
+<script src="http://cdn.webrupee.com/js" />
 <script src="media://com_enrega/js/enrega.js" />
 
 <div id="tools" class="table-table">
-	<form action="<?= @route() ?>" method="get" class="-koowa-grid">
 
 	<div class="table-row">
+	<form action="<?= @route() ?>" method="get" class="-koowa-grid">
 		<div class="table-cell"><?= @text('Common Settings'); ?></div>
 		<div class="table-cell"> 
 			<select onchange="this.form.submit()" name="lang" class="inputbox">
@@ -30,11 +37,6 @@ if ($nextyear > date('Y')) {
 			</select> 
 		</div>
 		<div class="table-cell">
-			<select class="inputbox" name="year">
-				<option value="">Year / साल</option>
-				<option value="2009">2009-10</option>
-				<option value="2010">2010-11</option>
-			</select>
 		</div>
 		<div class="table-cell">
 			<input type="checkbox" onchange="toggleCurrency()" checked="true" /> <?=@text('Currency Toggle');?>
@@ -43,8 +45,9 @@ if ($nextyear > date('Y')) {
 			<input name="id" type="hidden" value="<?= KRequest::get('get.id', 'int'); ?>" />
 			<input name="Itemid" type="hidden" value="<?= KRequest::get('get.Itemid', 'int'); ?>" />
 		</div>
-	</div>
 	</form>
+	</div>
+
 
 	<div class="table-row">
 		<div class="table-cell"><?= @text('Quick Search'); ?></div>
@@ -60,9 +63,9 @@ if ($nextyear > date('Y')) {
 		<td style="text-align:left" width="30%"><?= @helper('layout.breadcrumb'); ?></td>
 		<td style="text-align:center" width="40%">
 		<h2 class="year">
-			<a href="<?=@route('&year='.$lastyear)?>"><</a>
+			<a href="<?=@route('&year='.$show_lastyear)?>"><</a>
 			<span class="currentyear"><?=$showyear?></span>
-			<a href="<?=@route('&year='.$nextyear)?>">></a>
+			<a href="<?=@route('&year='.$show_nextyear)?>">></a>
 		</h2>
 		</td>
 		<td style="text-align:right" width="30%"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
