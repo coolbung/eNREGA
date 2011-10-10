@@ -2,7 +2,7 @@
 div.table-table {display:table; width:900px}
 div.table-row {display:table-row}
 div.table-cell {display:table-cell; padding:5px}
-div.datalist {width: 100%; max-height:300px; display:block; overflow-y: auto}
+div.datalist {width: 100%; max-height:300px; display:block; overflow-y: auto; font-size: 110%}
 div.datalist div.table-row:hover { background-color: #99D6EB}
 .cell1 {width: 5%}
 .cell2 {width: 10%}

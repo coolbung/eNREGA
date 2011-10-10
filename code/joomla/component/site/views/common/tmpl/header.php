@@ -18,57 +18,41 @@ if ($nextyear > date('Y')) {
 }
 $show_nextyear	= $nextyear . '-' . ($nextyear+1);
 
+$mr_link = 'lang=mr&Itemid='.KRequest::get('get.Itemid', 'int').'&id='.KRequest::get('get.id', 'int');
+$en_link = 'lang=en&Itemid='.KRequest::get('get.Itemid', 'int').'&id='.KRequest::get('get.id', 'int');
+
 ?>
 <style src="media://com_enrega/css/enrega.css" /> 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
 <script src="http://cdn.webrupee.com/js" />
 <script src="media://com_enrega/js/enrega.js" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" />
 
-<div id="tools" class="table-table">
+<table id="tools" width="100%" cellspacing="1" cellpadding="1">
 
-	<div class="table-row">
-	<form action="<?= @route() ?>" method="get" class="-koowa-grid">
-		<div class="table-cell"><?= @text('Common Settings'); ?></div>
-		<div class="table-cell"> 
-			<select onchange="this.form.submit()" name="lang" class="inputbox">
-				<option value="">Language / भाषा </option>
-				<option value="en">English</option>
-				<option value="mr">मराठी</option>
-			</select> 
-		</div>
-		<div class="table-cell">
-		</div>
-		<div class="table-cell">
-			<input type="checkbox" onchange="toggleCurrency()" checked="true" /> <?=@text('Currency Toggle');?>
-		</div>
-		<div class="table-cell">
-			<input name="id" type="hidden" value="<?= KRequest::get('get.id', 'int'); ?>" />
-			<input name="Itemid" type="hidden" value="<?= KRequest::get('get.Itemid', 'int'); ?>" />
-		</div>
-	</form>
-	</div>
+	<tr>
+		<td width="160"><?= @helper('layout.quicksearch', array('view'=>'states')); ?></td>
+		<td width="160"><?= @helper('layout.quicksearch', array('view'=>'districts')); ?></td>
+		<td width="160"><?= @helper('layout.quicksearch', array('view'=>'blocks')); ?></td>
+		<td width="160"><?= @helper('layout.quicksearch', array('view'=>'panchayats')); ?></td>
+		<td style="text-align:right">
+			<a href="<?=@route($mr_link)?>">मराठी</a>
+			 | 
+			<a href="<?=@route($en_link)?>">English</a>
+		</td>
 
-
-	<div class="table-row">
-		<div class="table-cell"><?= @text('Quick Search'); ?></div>
-		<div class="table-cell"><?= @helper('layout.quicksearch', array('view'=>'states')); ?></div>
-		<div class="table-cell"><?= @helper('layout.quicksearch', array('view'=>'districts')); ?></div>
-		<div class="table-cell"><?= @helper('layout.quicksearch', array('view'=>'blocks')); ?></div>
-		<div class="table-cell"><?= @helper('layout.quicksearch', array('view'=>'panchayats')); ?></div>
-	</div>
-</div>
+	</tr>
+</table>
 
 <table width="100%">
 	<tr>
 		<td style="text-align:left" width="30%"><?= @helper('layout.breadcrumb'); ?></td>
-		<td style="text-align:center" width="40%">
+		<td style="text-align:right" width="40%">
 		<h2 class="year">
 			<a href="<?=@route('&year='.$show_lastyear)?>"><</a>
 			<span class="currentyear"><?=$showyear?></span>
 			<a href="<?=@route('&year='.$show_nextyear)?>">></a>
 		</h2>
 		</td>
-		<td style="text-align:right" width="30%"><a onclick="jQuery('#tools').toggle(); return false;" href="#"><?= @text('TOGGLE CONFIG'); ?></a></td>
 	</tr>
 </table>
 <hr />
